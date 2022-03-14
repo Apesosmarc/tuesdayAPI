@@ -10,8 +10,8 @@ const JobSchema = new mongoose.Schema(
 
     status: {
       type: String,
-      enum: ["Stuck", "Working On It", "Awaiting Review", "Done"],
-      required: [true, "Please provide position name"],
+      enum: ["Stuck", "Working On It", "Waiting For Review", "Done", "Paused"],
+      required: [true, "Please provide status name"],
       maxLength: 20,
     },
     priority: {
@@ -22,6 +22,11 @@ const JobSchema = new mongoose.Schema(
     },
     createdBy: {
       type: mongoose.Types.ObjectId,
+      ref: "User",
+      required: [true, "Please provide user"],
+    },
+    name: {
+      type: String,
       ref: "User",
       required: [true, "Please provide user"],
     },

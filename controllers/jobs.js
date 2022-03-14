@@ -8,6 +8,7 @@ const Job = require("../models/Job");
 
 const createJob = async (req, res) => {
   req.body.createdBy = req.user.userId;
+  req.body.name = req.user.name;
 
   const job = await Job.create(req.body);
   res.status(StatusCodes.CREATED).json({
